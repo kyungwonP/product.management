@@ -17,9 +17,12 @@ public class SimpleProductService {
 
     private final ModelMapper modelMapper;
 
+    private final ValidationService validationService;
+
     public ProductDto add(ProductDto productDto) {
         // 1. ProductDto를 Product로 변환하는 코드
         Product product = modelMapper.map(productDto, Product.class);
+        validationService.checkValid(product);
 
         // 2. 레포지토리를 호출하는 코드
         Product savedProduct = listProductRespository.add(product);
