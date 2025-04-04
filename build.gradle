@@ -24,6 +24,8 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.modelmapper:modelmapper:3.2.1'
 	implementation("org.springframework.boot:spring-boot-starter-validation:3.4.4")
+	implementation("org.springframework.boot:spring-boot-starter-jdbc:3.4.4")
+	implementation("mysql:mysql-connector-java:8.0.33")
 }
 
 tasks.named('test') {

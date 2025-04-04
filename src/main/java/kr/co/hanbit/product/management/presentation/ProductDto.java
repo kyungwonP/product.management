@@ -7,7 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductDto {
-    @NotNull
     private Long id;
 
     @NotNull
