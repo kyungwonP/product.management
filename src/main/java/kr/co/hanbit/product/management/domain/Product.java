@@ -44,4 +44,11 @@ public class Product {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public Product(Long id, String name, Integer price, Integer amount) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+    }
 }
