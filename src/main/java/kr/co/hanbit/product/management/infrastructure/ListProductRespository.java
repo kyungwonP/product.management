@@ -2,6 +2,8 @@ package kr.co.hanbit.product.management.infrastructure;
 
 import kr.co.hanbit.product.management.domain.EntityNotFoundException;
 import kr.co.hanbit.product.management.domain.Product;
+import kr.co.hanbit.product.management.domain.ProductRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,7 +11,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
-public class ListProductRespository {
+@Profile("test")
+public class ListProductRespository implements ProductRepository {
 
     private List<Product> products = new CopyOnWriteArrayList<>(); // 동시성 문제로 부터 ArrayList 보다 CopyOnWriteArrayList 가 조금 더 나음
 

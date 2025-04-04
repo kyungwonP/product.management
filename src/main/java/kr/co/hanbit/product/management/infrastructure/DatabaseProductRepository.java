@@ -1,7 +1,9 @@
 package kr.co.hanbit.product.management.infrastructure;
 
 import kr.co.hanbit.product.management.domain.Product;
+import kr.co.hanbit.product.management.domain.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -15,7 +17,8 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class DatabaseProductRepository {
+@Profile("prod")
+public class DatabaseProductRepository implements ProductRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

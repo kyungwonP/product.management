@@ -1,7 +1,7 @@
 package kr.co.hanbit.product.management.application;
 
 import kr.co.hanbit.product.management.domain.Product;
-import kr.co.hanbit.product.management.infrastructure.DatabaseProductRepository;
+import kr.co.hanbit.product.management.domain.ProductRepository;
 import kr.co.hanbit.product.management.presentation.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class SimpleProductService {
 
-    private final DatabaseProductRepository databaseProductRepository;
+    private final ProductRepository productRepository;
 
     private final ModelMapper modelMapper;
 
@@ -25,7 +25,7 @@ public class SimpleProductService {
         validationService.checkValid(product);
 
         // 2. 레포지토리를 호출하는 코드
-        Product savedProduct = databaseProductRepository.add(product);
+        Product savedProduct = productRepository.add(product);
 
         // 3. Product를 ProductDto로 변환하는 코드
         ProductDto savedProductDto = modelMapper.map(savedProduct, ProductDto.class);
@@ -35,13 +35,13 @@ public class SimpleProductService {
     }
 
     public ProductDto findById(Long id) {
-        Product product = databaseProductRepository.findById(id);
+        Product product = productRepository.findById(id);
         ProductDto productDto = modelMapper.map(product, ProductDto.class);
         return productDto;
     }
 
     public List<ProductDto> findAll() {
-        List<Product> products = databaseProductRepository.findAll();
+        List<Product> products = productRepository.findAll();
 
         List<ProductDto> productDtos = products.stream()
                 .map(product -> modelMapper.map(product, ProductDto.class))
@@ -52,7 +52,7 @@ public class SimpleProductService {
     }
 
     public List<ProductDto> findByNameContaining(String name) {
-        List<Product> products = databaseProductRepository.findByNameContaining(name);
+        List<Product> products = productRepository.findByNameContaining(name);
 
         List<ProductDto> productDtos = products.stream()
                 .map(product -> modelMapper.map(product, ProductDto.class))
@@ -63,12 +63,12 @@ public class SimpleProductService {
 
     public ProductDto update(ProductDto productDto) {
         Product product = modelMapper.map(productDto, Product.class);
-        Product updatedProduct = databaseProductRepository.update(product);
+        Product updatedProduct = productRepository.update(product);
         ProductDto updatedProductDto = modelMapper.map(updatedProduct, ProductDto.class);
         return updatedProductDto;
     }
 
     public void delete(Long id) {
-        databaseProductRepository.delete(id);
+        productRepository.delete(id);
     }
 }
