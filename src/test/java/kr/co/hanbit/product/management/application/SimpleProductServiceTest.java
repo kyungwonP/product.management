@@ -19,7 +19,7 @@ class SimpleProductServiceTest {
     @Autowired // 테스트 코드에서는 가능
     SimpleProductService simpleProductService;
 
-    //    @Transactional
+    //    @Transactional // test 어노테이션과 함께쓰면 데이터 롤백됨
     @Test
     @DisplayName("상품을 추가한 후 id로 조회하면 해당 상품이 조회되어야한다.")
     void productAddAndFindByIdTest() {
